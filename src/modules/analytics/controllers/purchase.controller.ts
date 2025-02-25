@@ -14,4 +14,10 @@ export class PurchaseController {
   async registerSale(@Body() registerSaleDto: RegisterSaleDto) {
     return this.purchaseService.registerSale(registerSaleDto);
   }
+
+  @Get()
+  @ApiQuery({ name: 'user', required: true })
+  async getPurchases(@Query('user') user: string) {
+    return this.purchaseService.findAll();
+  }
 }
