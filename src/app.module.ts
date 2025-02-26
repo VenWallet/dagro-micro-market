@@ -9,6 +9,9 @@ import { DatabaseConfig } from './config/database/database.config';
 import { HttpCustomModule } from './shared/http/http.module';
 import { ScheduleModule } from '@nestjs/schedule';
 import { AnalyticsModule } from './modules/analytics/analytics.module';
+import { CategoryModule } from './modules/category/category.module';
+import { PackingModule } from './modules/packing/packing.module';
+import { ProductModule } from './modules/product/product.module';
 
 @Module({
   imports: [
@@ -18,6 +21,9 @@ import { AnalyticsModule } from './modules/analytics/analytics.module';
     UtilsModule,
     HttpCustomModule,
     AnalyticsModule,
+    CategoryModule,
+    PackingModule,
+    ProductModule,
   ],
   controllers: [AppController],
   providers: [],
