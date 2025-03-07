@@ -6,7 +6,7 @@ import { ConfigService } from '@nestjs/config';
 import { ExceptionHandler } from 'src/helpers/handlers/exception.handler';
 
 @Injectable()
-export class S3Service {
+export class MediaService {
   private s3: AWS.S3;
   private bucketName: string;
 

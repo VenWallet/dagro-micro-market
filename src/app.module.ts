@@ -12,7 +12,7 @@ import { AnalyticsModule } from './modules/analytics/analytics.module';
 import { CategoryModule } from './modules/category/category.module';
 import { PackingModule } from './modules/packing/packing.module';
 import { ProductModule } from './modules/product/product.module';
-import { S3Module } from './modules/s3/s3.module';
+import { MediaModule } from './modules/media/media.module';
 
 @Module({
   imports: [
@@ -25,7 +25,7 @@ import { S3Module } from './modules/s3/s3.module';
     CategoryModule,
     PackingModule,
     ProductModule,
-    S3Module,
+    MediaModule,
   ],
   controllers: [AppController],
   providers: [],

@@ -1,17 +1,17 @@
 import { Controller, Post, UploadedFile, UploadedFiles, UseInterceptors } from '@nestjs/common';
 import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
-import { S3Service } from '../services/s3.service';
 import { File as MulterFile } from 'multer';
 import { ApiTags, ApiConsumes, ApiBody } from '@nestjs/swagger';
+import { MediaService } from '../services/media.service';
 
-@ApiTags('S3')
-@Controller('s3')
-export class S3Controller {
-  constructor(private readonly s3Service: S3Service) {}
+@ApiTags('Media')
+@Controller('media')
+export class MediaController {
+  constructor(private readonly mediaService: MediaService) {}
 
   @Post('upload')
   @UseInterceptors(FileInterceptor('file'))
-  @ApiConsumes('multipart/form-data') // Swagger reconoce la subida de archivos
+  @ApiConsumes('multipart/form-data')
   @ApiBody({
     description: 'Sube un archivo a DigitalOcean Spaces',
     schema: {
@@ -25,7 +25,7 @@ export class S3Controller {
     },
   })
   async uploadFile(@UploadedFile() file: MulterFile) {
-    const fileUrl = await this.s3Service.uploadFile(file);
+    const fileUrl = await this.mediaService.uploadFile(file);
     return { url: fileUrl };
   }
 
@@ -48,7 +48,7 @@ export class S3Controller {
     },
   })
   async uploadMultipleFiles(@UploadedFiles() files: MulterFile[]) {
-    const fileUrls = await this.s3Service.uploadMultipleFiles(files);
+    const fileUrls = await this.mediaService.uploadMultipleFiles(files);
     return { urls: fileUrls };
   }
 }
