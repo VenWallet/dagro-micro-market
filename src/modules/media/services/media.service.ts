@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { File as MulterFile } from 'multer';
 import { ConfigService } from '@nestjs/config';
 import { ExceptionHandler } from 'src/helpers/handlers/exception.handler';
+import { extname } from 'path';
 
 @Injectable()
 export class MediaService {
@@ -24,7 +25,8 @@ export class MediaService {
 
   async uploadFile(file: MulterFile): Promise<string> {
     try {
-      const fileKey = `dagro/uploads/${uuidv4()}`;
+      const fileExtension = extname(file.originalname);
+      const fileKey = `dagro/uploads/${uuidv4()}${fileExtension}`;
 
       const params = {
         Bucket: this.bucketName,
